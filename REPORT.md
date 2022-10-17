@@ -18,7 +18,6 @@ The number after a GS indicates the number of the experiment in tunning the Hype
 | LogisticRegressionB   | 0.719 | 0.657      | 3.223 |
 | LogisticRegressionBGS | 0.713| 0.649    | 2.994 |
 | **LogisticRegressionBGS2** | **0.684** | **0.617**    | **2.720** |
-| LogisticRegressionBGS3 | 0.684 | 0.617    | 2.760 |
 | DecisionTreeClassifier            | 12.79| 0.003 | 10.64|
 | DecisionTreeClassifierB    | 12.95 | 0.004 | 8.857  |
 | DecisionTreeClassifierBGS  | 1.049| 1.043    | 1.810 |
@@ -48,7 +47,6 @@ The number after a GS indicates the number of the experiment in tunning the Hype
 - Average ROC AUC OvR: 0.8558
 
 **Best Pipeline Details**
-
 
 - CountVectorizer(max_features=2000, ngram_range=(1, 2))
 
