@@ -81,6 +81,11 @@ Let's take a quick overview on each module:
     - `model/ml_service.py`: Runs a thread in which it get jobs from Redis, process them with the model and returns the answers.
     - `model/settings.py`: Settings for our ML model.
 
+- EDA: Is the Main Notebook of the proejct where all the code is written. EDA and Model Evaluation is performed here.
+    - `visualization.py`: Holds the Visualization Functions.
+    - `evaluation.py`: Holds the Evaluation Functions.
+    - `text_normalizer.py`: Holds the Text Normalization functions.
+
 
 
 
