@@ -36,29 +36,33 @@ Below is the full project structure:
 
 ```
 ├── api
-│   ├── Dockerfile
-│   ├── app.py
-│   ├── middleware.py
-│   ├── views.py
-│   ├── settings.py
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── config.py
 │   ├── utils.py
-│   ├── templates
-│       └── index.html
-│       └── style.css
+│   └── routers
+│       └── auth.py
+│       └── feedback.py
 │       
-├── model
-│   ├── Dockerfile
-│   ├── ml_service.py
-│   ├── settings.py
+├── test
+│   ├── database.py
+│   ├── conftest.py
+│   ├── test_feedback.py
+│   └── test_user.py
 │
-├── EDA.ipynb
+├── Model
+│   ├── SentimentAnalysis.ipynb
 │   ├── visualization.py
 │   ├── evaluation.py
-│   ├── text_normalizer.py
+│   └── text_normalizer.py
 │
+├── Dockerfile
 ├── docker-compose.yml
+├── requirements.txt
 ├── README.md
-├── REPORT.md
+└──REPORT.md
 
 
 
@@ -66,22 +70,25 @@ Below is the full project structure:
 
 Let's take a quick overview on each module:
 
-- api: It has all the needed code to implement the communication interface between the users and our service. It uses Flask and Redis to queue tasks to be processed by our machine learning model.
-    - `api/app.py`: Setup and launch our Flask api.
-    - `api/views.py`: Contains the API endpoints. You must implement the following endpoints:
-        - *upload_text: Displays a frontend in which the user can upload a review and get a prediction from our model.
-        - *predict*: POST method which receives a review and sends back the model prediction. This endpoint is useful for integration with other services and platforms given we can access it from any other programming language.
-        - *feedback*: Endpoint used to get feedback from users when the prediction from our model is incorrect.
+- api: It has all the needed code to implement the communication interface between the users and our service. It uses fastapi and PostgreSQL to save user´s feedback and rating.
+    - `api/main.py`: Setup and launch our api.
+    - `api/database.py`: PostgeSQL Database Initialization.
+    - `api/models.py`: Database Tables Declaration with SQLAlchemy.
+    - `api/schemas.py`: Database Tables Validation Schemas.
+    - `api/routers.py`: Folder which contains the API endpoints. You must implement the following endpoints:
+        - *login*: POST method where Spotify User logs in.
+        - *create_feedback*: POST method which receives the feedback, rating and a harcoded string which will then be out predicted sentiment. Here we load our feedback on the respective database with its prediction. Very useful for future training.
     - `api/utils.py`: Implements some extra functions used internally by our api.
-    - `api/middlewarw.py`: Midddleware between Api and Model
-    - `api/settings.py`: It has all the API settings.
-    - `api/templates`: Here we put the .html files used in the frontend.
+    - `api/config.py`: It has all the API settings.
   
-- model: Implements the logic to get jobs from Redis and process them with our Machine Learning model. When we get the predicted value from our model, we must encole it on Redis again so it can be delivered to the user.
-    - `model/ml_service.py`: Runs a thread in which it get jobs from Redis, process them with the model and returns the answers.
-    - `model/settings.py`: Settings for our ML model.
-
-- EDA: Is the Main Notebook of the proejct where all the code is written. EDA and Model Evaluation is performed here.
+- test: Contains all the files to perform the testing of the app.
+    - `database.py`: PostgeSQL Test Database Initialization.
+    - `conftest.py`: Holds the global functions (@fixture) of the routes test.
+    - `test_feedback.py`: *create_feedback* tests.
+    - `test_user.py`: *login* tests.
+  
+- model: Contains all the files to perform the Model cleaing, training and evaluation.
+    - `visualization.py`: Is the Main Notebook of the proejct where all the code is written. EDA and Model Evaluation is performed here.
     - `visualization.py`: Holds the Visualization Functions.
     - `evaluation.py`: Holds the Evaluation Functions.
     - `text_normalizer.py`: Holds the Text Normalization functions.
