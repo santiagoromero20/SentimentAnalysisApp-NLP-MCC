@@ -9,9 +9,7 @@ router = APIRouter(
     tags = ["feedback"]
 )
 
-import joblib
-
-#Full Pipeline (Cleaning, Vectorizing and Predicting)
+#Full Pipeline (Vectorizing and Predicting)
 with open('spotify_pipe.pkl', 'rb') as f:
     loaded_pipe = joblib.load(f)
 
@@ -27,7 +25,10 @@ def create_feedback(feedback:schemas.FeedbackCreate,db: Session = Depends(get_db
     #Restriction Check
     if utils.restrictions(feedback.feedback, feedback.rating) == True:
         pass
-
+    
+    #Cleaning the Data
+    feedback.feedback = utils.clean(feedback.feedback)
+    
     #Getting Prediction
     feedback.prediction = predict_sentiment(feedback.feedback, loaded_pipe)
     
