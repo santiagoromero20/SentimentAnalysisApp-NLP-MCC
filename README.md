@@ -12,7 +12,7 @@ Logistic Regression and Decision Tree Classifier with input data vectorized with
 
 ## Table of Contents
 
-**[1. Sentiment Analysis Notebook](#heading--1)**
+**[1. EDA Notebook](#heading--1)**
 
   * [1.1. Data Collection](#heading--1-1)
   * [1.2. Data Analysis and Preprocessing](#heading--1-2)
@@ -58,11 +58,12 @@ Below is the full project structure:
 │   ├── evaluation.py
 │   └── text_normalizer.py
 │
+├── spotify_pipe.pkl
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
 ├── README.md
-└──REPORT.md
+└── REPORT.md
 
 
 
@@ -93,6 +94,20 @@ Let's take a quick overview on each module:
     - `evaluation.py`: Holds the Evaluation Functions.
     - `text_normalizer.py`: Holds the Text Normalization functions.
 
+- `spotify_pipe.pkl`: Is the best performer scikit-learn pipeline, is the one in charge of all the steps of a typical ML Pipeline, starting from Vectorizing up until making the prediction. It is use on *create_feedback* route. You can read a little bit more about it on the *REPORT.md* file.
+
+
+## Installation
+
+You can pull the image from DockerHub, to do so you must have an account. If you don´t, you can clone my project into your local repo and run this command:
+
+      docker-compose -f docker-compose-prod.yml up -d
+
+By doing this you will be building the image and start running your container on the same step, it isn´t mandatory to do it in this way as there are others, it´s just a recommendation. On the Dockerfile, you can see the use of two services (the app itself and the database) which logically are started by different images. The App image is declare and "build" it on the Dockerfile and the Postgresql is the official one from DockerHub. 
+
+Be aware that if you change the places from files of folders or anything like that you may be probably harming the full functionallity of the API for different reasons, and that you should declare your own environment variables for initializing your database.
+
+Once the Container is running you can go to your **localhost/docs** url and try for yourself all the routes.
 
 
 
