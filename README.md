@@ -1,8 +1,10 @@
-# Sentiment Analysis on Spotify App Reviews
+# **Sentiment Analysis on Spotify App Reviews**
 
 Spotify it is one of the largest music streaming service providers, with over 422 million monthly active users, including 182 million paying subscribers, as of March 2022. Some of them don't hesitate to share their experience using this application along with the given rating to denote how satisfied they are on Google Play Store Review. The data was collected by scraping Spotify reviews on Google Play Store.
 
-## Motivation
+
+![Alt ](img/frog.jpeg "Title")
+## **Motivation**
 
 My motivation to start doing this project was to get more knowledge about processes of an NLP project. I have already done a Binary Classification Project, so I wanted to try something harder, a Multi-Class Classification problem. Once I decided this I started looking for datasets and I found the one it is use on Kaggle. Nowadays there are millions of apps being reviewed by users every day, so the idea of automatically analysing a review and knowing which is the sentiment of it, in this particular
 case "Positive", "Negative" or "Neutral", it is an amazing real world application of AI. 
@@ -10,7 +12,7 @@ case "Positive", "Negative" or "Neutral", it is an amazing real world applicatio
 Let´s talk a little bit about the project. I wanted to see how different ML models performed for different types of Vectorizations techniques, so on the Notebook you will notice the use of
 Logistic Regression and Decision Tree Classifier with input data vectorized with techniques such as Bag of Words, Tf-Idf (built in classes from Scikit-learn) and an trained Word Embedding (I trained my own one with the vocabulary from the dataset).
 
-## Table of Contents
+## **Table of Contents**
 
 **[1. EDA Notebook](#heading--1)**
 
@@ -95,7 +97,6 @@ Let's take a quick overview on each module:
     - `text_normalizer.py`: Holds the Text Normalization functions.
 
 - `spotify_pipe.pkl`: Is the best performer scikit-learn pipeline, is the one in charge of all the steps of a typical ML Pipeline, starting from Vectorizing up until making the prediction. It is use on *create_feedback* route. You can read a little bit more about it on the *REPORT.md* file.
-
 
 ## Installation
 
